@@ -1,0 +1,23 @@
+<h6 class="pb-2 mb-0">Create Employees</h6>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input formControlName="name" type="text" class="form-control" id="name" placeholder="Gift Mbungwane">
+     <small *ngIf="employeeForm.get('name').hasError('required')" class="form-text text-danger">Name of an employee is required.</small>
+  </div>
+  <div class="form-group">
+    <label for="position">Position</label>
+    <select formControlName="position" class="form-control" id="position">
+      <option>Manager</option>
+      <option>Hr</option>
+      <option>Developer</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="salary">Salary</label>
+    <input formControlName="salary" type="text" class="form-control" id="salary" placeholder="R44,000">
+    <small *ngIf="employeeForm.get('salary').hasError('required')" class="form-text text-danger">Salary is required.</small>
+  </div>
+  <button type="submit" [disabled]="loader || employeeForm.invalid" class="btn btn-primary">{{loader?'Adding':'Add'}}</button>
+</form>
